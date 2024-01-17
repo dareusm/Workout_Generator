@@ -1,0 +1,8 @@
+1/14/2024:
+Today I will be creating a basic workout generator. I will create classes for each category of workout. A Cardio file/class, a HIIT file/class, a Legs class/file,
+a Push day file/class, and a Pull day class/file. Each class will contain a list of workouts that fall under each category. In the main file I will import these files
+and import the random python module. I want the random module so that way it will pick a random set of workouts rather than printing the whole list.
+
+1/17/2024:
+Today I will implement the datetime module so that way when the user starts the program it will welcome them with a good morning, good afternoon, or good evening message
+depending on what it is where they are located. I will also place the while loop in it's own function in order to clean up the main function.
