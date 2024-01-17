@@ -5,4 +5,5 @@ and import the random python module. I want the random module so that way it wil
 
 1/17/2024:
 Today I will implement the datetime module so that way when the user starts the program it will welcome them with a good morning, good afternoon, or good evening message
-depending on what it is where they are located. I will also place the while loop in it's own function in order to clean up the main function.
+depending on what it is where they are located. I will also place the while loop in it's own function in order to clean up the main function. I will also have my program
+print a string instead of a list. I will create a new branch in order to try and implement this functionality. Once I complete it, I will merge it to the main branch.
