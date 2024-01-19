@@ -7,3 +7,7 @@ and import the random python module. I want the random module so that way it wil
 Today I will implement the datetime module so that way when the user starts the program it will welcome them with a good morning, good afternoon, or good evening message
 depending on what it is where they are located. I will also place the while loop in it's own function in order to clean up the main function. I will also have my program
 print a string instead of a list. I will create a new branch in order to try and implement this functionality. Once I complete it, I will merge it to the main branch.
+
+1/18/2024
+I was able to turn the list into a string. However, I will need to work on it a bit more in order to make sure the print statement comes out gramatically correct. Today I 
+will create a database to track users of the app. I still don't know if I will implement a login or just have the user enter their name. 
