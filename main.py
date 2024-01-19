@@ -24,8 +24,8 @@ def get_time_greeting():
 def list_to_string(list):
     string_value = "For your workout today you will be doing: "
     for i in range(len(list)):
-        workouts = list[i]
-    print(string_value + workouts, end=", ")
+        workouts = ', '.join(list)
+    print(string_value + workouts)
 
 
 # Questionaire Class
