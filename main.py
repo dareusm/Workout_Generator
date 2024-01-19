@@ -2,7 +2,22 @@
 import cardio, hiit, legs, pull, push
 import random
 from datetime import datetime
+import sqlite3
 
+#Adding users to database
+def add_user(firstName, lastName):
+    conn = sqlite3.connect("Users.db")
+    c = conn.cursor()
+    c.execute("INSERT INTO Users VALUES ('{}', '{}')".format(firstName, lastName))
+    conn.commit()
+    conn.close()
+
+#User login
+def login():
+    conn = sqlite3.connect("Users.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM Users")
+    data = c.fetchall()
 
 # Implement Random to choose 3 random workouts from each category
 def rand(workoutList, n):
