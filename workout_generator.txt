@@ -15,3 +15,4 @@ functionality in the future.
 
 1/19/2024
 10:00 AM : I have fixed the login function.
+8:50 PM : Users are now able to be added to the database while the 'id' column autoincrements.
