@@ -10,4 +10,9 @@ print a string instead of a list. I will create a new branch in order to try and
 
 1/18/2024
 I was able to turn the list into a string. However, I will need to work on it a bit more in order to make sure the print statement comes out gramatically correct. Today I 
-will create a database to track users of the app. I still don't know if I will implement a login or just have the user enter their name. 
+will create a database to track users of the app. I still don't know if I will implement a login or just have the user enter their name. I will work more on the login 
+functionality in the future.
+
+1/19/2024
+10:00 AM : I have fixed the login function.
+8:50 PM : Users are now able to be added to the database while the 'id' column autoincrements.
