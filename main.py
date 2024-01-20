@@ -1,35 +1,8 @@
 # Import all workout classes
-import cardio, hiit, legs, pull, push
+import cardio, hiit, legs, pull, push, db_access
 import random
 from datetime import datetime
 import sqlite3
-
-
-# Adding users to database
-def add_user(firstName, lastName):
-    conn = sqlite3.connect("Users.db")
-    c = conn.cursor()
-    c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (firstName, lastName))
-    conn.commit()
-    conn.close()
-
-
-# User login
-def login(firstName, lastName):
-    conn = sqlite3.connect("Users.db")
-    c = conn.cursor()
-
-    # Fetch the user with the given firstname
-    c.execute("SELECT * FROM Users where first_name = ?", (firstName,))
-    name = c.fetchone()
-    conn.close()
-
-    # Check if user exists in database and that their last name matches
-    if name is not None and name[2] == lastName:
-        return True
-    else:
-        return False
-
 
 # Implement Random to choose 3 random workouts from each category
 def rand(workoutList, n):
@@ -57,6 +30,9 @@ def list_to_string(list):
 
 # Questionaire Class
 def questionaire(self):
+    # Initialize database
+    self.db = db_access
+    
     # Set Loop
     looping = True
     firstName = ""
@@ -69,7 +45,7 @@ def questionaire(self):
     while looping:
         firstName = input("What is your first name: ")
         lastName = input("What is your last name: ")
-        if login(firstName, lastName):
+        if self.db.login(firstName, lastName):
             print("You have successfully logged in!")
             break
         else:
@@ -78,7 +54,7 @@ def questionaire(self):
             )
             add_user_response = input().upper()
             if add_user_response == "Y":
-                add_user(firstName, lastName)
+                self.db.add_user(firstName, lastName)
                 print("You have been added to the database!")
                 break
             else:
