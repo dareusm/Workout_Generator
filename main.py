@@ -4,20 +4,32 @@ import random
 from datetime import datetime
 import sqlite3
 
-#Adding users to database
+
+# Adding users to database
 def add_user(firstName, lastName):
     conn = sqlite3.connect("Users.db")
     c = conn.cursor()
-    c.execute("INSERT INTO Users VALUES ('{}', '{}')".format(firstName, lastName))
+    c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (firstName, lastName))
     conn.commit()
     conn.close()
 
-#User login
-def login():
+
+# User login
+def login(firstName, lastName):
     conn = sqlite3.connect("Users.db")
     c = conn.cursor()
-    c.execute("SELECT * FROM Users")
-    data = c.fetchall()
+
+    # Fetch the user with the given firstname
+    c.execute("SELECT * FROM Users where first_name = ?", (firstName,))
+    name = c.fetchone()
+    conn.close()
+
+    # Check if user exists in database and that their last name matches
+    if name is not None and name[2] == lastName:
+        return True
+    else:
+        return False
+
 
 # Implement Random to choose 3 random workouts from each category
 def rand(workoutList, n):
@@ -25,32 +37,57 @@ def rand(workoutList, n):
 
 
 # Get time of day to greet the user
-def get_time_greeting():
+def get_time_greeting(user):
     now = datetime.now()
     if now.hour < 12:
-        print("Good morning!")
+        print(f"Good morning {user}")
     elif now.hour >= 12 and now.hour < 17:
-        print("Good afternoon!")
+        print(f"Good afternoon {user}!")
     else:
-        print("Good evening!")
+        print(f"Good evening {user}!")
 
 
 # Turn the random list into a string to print out
 def list_to_string(list):
     string_value = "For your workout today you will be doing: "
     for i in range(len(list)):
-        workouts = ', '.join(list)
+        workouts = ", ".join(list)
     print(string_value + workouts)
 
 
 # Questionaire Class
 def questionaire(self):
+    # Set Loop
     looping = True
-    # Greet the user
-    get_time_greeting()
+    firstName = ""
+    lastName = ""
+
+    # Welcome Message
     print("Welcome to Workout Generator!")
-    firstName = input("What is your first name: ")
-    print(f"\nHello {firstName.capitalize()}! Let's get started!")
+
+    # Login function
+    while looping:
+        firstName = input("What is your first name: ")
+        lastName = input("What is your last name: ")
+        if login(firstName, lastName):
+            print("You have successfully logged in!")
+            break
+        else:
+            print(
+                "You have entered an invalid name. Please try again. \n Would you like me to add you to the database? (y/n)"
+            )
+            add_user_response = input().upper()
+            if add_user_response == "Y":
+                add_user(firstName, lastName)
+                print("You have been added to the database!")
+                break
+            else:
+                continue
+            continue
+
+    # Greet the user
+    get_time_greeting(firstName.capitalize())
+    print("Let's get started!")
     while looping:
         try:
             type_of_workout = input(
