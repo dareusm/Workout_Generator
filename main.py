@@ -50,7 +50,7 @@ def questionaire(self):
             break
         else:
             print(
-                "You have entered an invalid name. Please try again. \n Would you like me to add you to the database? (y/n)"
+                "You are not in the database!\n Would you like me to add you to the database? (y/n)"
             )
             add_user_response = input().upper()
             if add_user_response == "Y":
