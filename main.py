@@ -2,6 +2,8 @@
 import cardio, hiit, legs, pull, push, db_access, nutrition
 import random
 from datetime import datetime
+import api_access as api
+import os, sys
 import sqlite3
 
 # Implement Random to choose 3 random workouts from each category
@@ -13,7 +15,7 @@ def rand(workoutList, n):
 def get_time_greeting(user):
     now = datetime.now()
     if now.hour < 12:
-        print(f"Good morning {user}")
+        print(f"Good morning {user}!")
     elif now.hour >= 12 and now.hour < 17:
         print(f"Good afternoon {user}!")
     else:
@@ -26,9 +28,20 @@ def list_to_string(list):
     for i in range(len(list)):
         workouts = ", ".join(list)
     print(string_value + workouts)
+    
+def options():
+    print("What would you like to do?")
+    option = int(input("1. Request Workouts\n2. Log Workouts\n3. Log Nutrition\n4. Exit"))
+    if option == 1:
+        pass
+    if option == 2:
+        pass
+    if option == 3:
+        pass
+    if option == 4:
+        sys.exit()
 
-
-# Questionaire Class
+# Questionaire Function
 def questionaire(self):
     # Initialize database
     self.db = db_access
@@ -50,7 +63,7 @@ def questionaire(self):
             break
         else:
             print(
-                "You are not in the database!\n Would you like me to add you to the database? (y/n)"
+                "You are not in the database!\n Would you like me to add you? (y/n)"
             )
             add_user_response = input().upper()
             if add_user_response == "Y":
@@ -60,7 +73,8 @@ def questionaire(self):
             else:
                 continue
             continue
-
+        
+            
     # Greet the user
     get_time_greeting(firstName.capitalize())
     print("Let's get started!")
