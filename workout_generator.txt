@@ -16,3 +16,11 @@ functionality in the future.
 1/19/2024
 10:00 AM : I have fixed the login function.
 8:50 PM : Users are now able to be added to the database while the 'id' column autoincrements.
+
+1/22/2024
+4:50 PM : Registered an account on api ninjas in order to gain access to nutrition information. I plan on adding a nutrition section to my program in oder to help with calorie 
+counting.
+
+1/23/2024
+2:00 PM : Recreated the users table and created a nutrition table for users to log what they have eaten and the nutrition table has a foreign key named "user_id" which references 
+the "id" column in the users table. I also created a nutrition.py file/class to create a log function and I added a function to access the nutrition table in db_access.py. 

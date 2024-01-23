@@ -1,4 +1,5 @@
 import sqlite3
+import nutrition
 
 
 # Adding users to database
@@ -25,3 +26,20 @@ def login(firstName, lastName):
         return True
     else:
         return False
+
+
+def add_nutrition(self, user_id, conn, c):
+    self.conn = conn
+    self.c = c
+    self.user_id = user_id
+
+    conn = sqlite3.connect("Users.db")
+    c = conn.cursor()
+
+    c.execute(
+        "INSERT INTO nutrition VALUES (NULL, ?, ?, ?, ?)",
+        (user_id,) + nutrition.log_nutrition(),
+    )
+
+    conn.commit()
+    conn.close()

@@ -1,5 +1,5 @@
 # Import all workout classes
-import cardio, hiit, legs, pull, push, db_access
+import cardio, hiit, legs, pull, push, db_access, nutrition
 import random
 from datetime import datetime
 import sqlite3
