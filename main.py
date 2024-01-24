@@ -6,6 +6,13 @@ import api_access as api
 import os, sys
 import sqlite3
 
+# Initialize classes
+cardio = cardio.Cardio
+hiit = hiit.HIIT
+legs = legs.Legs
+pull = pull.Pull
+push = push.Push    
+    
 # Implement Random to choose 3 random workouts from each category
 def rand(workoutList, n):
     return random.sample(list(workoutList), n)
@@ -27,13 +34,18 @@ def list_to_string(list):
     string_value = "For your workout today you will be doing: "
     for i in range(len(list)):
         workouts = ", ".join(list)
-    print(string_value + workouts)
-    
-def options():
+    print(string_value + workouts.lower())
+
+
+# Options to select from at beginning of program
+def options(firstName):
+    get_time_greeting(firstName)
     print("What would you like to do?")
-    option = int(input("1. Request Workouts\n2. Log Workouts\n3. Log Nutrition\n4. Exit"))
+    option = int(
+        input("1. Request Workouts\n2. Log Workouts\n3. Log Nutrition\n4. Exit\n")
+    )
     if option == 1:
-        pass
+        first_option(firstName)
     if option == 2:
         pass
     if option == 3:
@@ -41,15 +53,13 @@ def options():
     if option == 4:
         sys.exit()
 
-# Questionaire Function
-def questionaire(self):
+# Login or add user to database
+def login_or_add(firstName):
     # Initialize database
-    self.db = db_access
-    
-    # Set Loop
+    db = db_access
+
+    # Set loop
     looping = True
-    firstName = ""
-    lastName = ""
 
     # Welcome Message
     print("Welcome to Workout Generator!")
@@ -58,25 +68,25 @@ def questionaire(self):
     while looping:
         firstName = input("What is your first name: ")
         lastName = input("What is your last name: ")
-        if self.db.login(firstName, lastName):
+        if db.login(firstName, lastName):
             print("You have successfully logged in!")
             break
         else:
-            print(
-                "You are not in the database!\n Would you like me to add you? (y/n)"
-            )
+            print("You are not in the database!\n Would you like me to add you? (y/n)")
             add_user_response = input().upper()
             if add_user_response == "Y":
-                self.db.add_user(firstName, lastName)
+                db.add_user(firstName, lastName)
                 print("You have been added to the database!")
                 break
             else:
                 continue
             continue
-        
-            
-    # Greet the user
-    get_time_greeting(firstName.capitalize())
+    return firstName
+
+# First option to select from
+def first_option(firstName):
+    # Create loop
+    looping = True
     print("Let's get started!")
     while looping:
         try:
@@ -86,46 +96,55 @@ def questionaire(self):
             type_of_workout = int(type_of_workout)
             if type_of_workout == 1:
                 print("You have chosen cardio!")
-                rand_cardio_list = rand(self.cardio.cardio_workouts, 3)
+                rand_cardio_list = rand(cardio.cardio_workouts, 3)
                 list_to_string(rand_cardio_list)
                 break
             elif type_of_workout == 2:
                 print("You have chosen HIIT!")
-                rand_hiit_list = rand(self.hiit.hiit_workouts, 3)
+                rand_hiit_list = rand(hiit.hiit_workouts, 3)
                 list_to_string(rand_hiit_list)
                 break
             elif type_of_workout == 3:
                 print("You have chosen legs!")
-                rand_legs_list = rand(self.legs.leg_workouts, 3)
+                rand_legs_list = rand(legs.leg_workouts, 3)
                 list_to_string(rand_legs_list)
                 break
             elif type_of_workout == 4:
                 print("You have chosen pull!")
-                rand_pull_list = rand(self.pull.pull_workouts, 3)
+                rand_pull_list = rand(pull.pull_workouts, 3)
                 list_to_string(rand_pull_list)
                 break
             elif type_of_workout == 5:
                 print("You have chosen push!")
-                rand_push_list = rand(self.push.push_workouts, 3)
+                rand_push_list = rand(push.push_workouts, 3)
                 list_to_string(rand_push_list)
                 break
         except ValueError:
             print("Please enter a valid number!")
 
+# Second option to select from
+def second_option(self, firstname, lastname):
+    pass
 
-class main:
+# Third option to select from
+def third_option(self, firstName):
+    pass
+
+# Fourth option to select from
+def fourth_option(self):
+    pass
+
+
+class main_class:
     def __init__(self):
-        # Initialize all workout classes
-        self.cardio = cardio.Cardio
-        self.hiit = hiit.HIIT
-        self.legs = legs.Legs
-        self.pull = pull.Pull
-        self.push = push.Push
+        pass
 
-    def main(self):
-        questionaire(self)
+    def main_func(self):
+        fn = ""
+        user = login_or_add(fn)
+        options(user)
 
 
 if __name__ == "__main__":
-    workout = main()
-    workout.main()
+    workout = main_class()
+    workout.main_func()
