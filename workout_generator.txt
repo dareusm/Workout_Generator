@@ -24,3 +24,9 @@ counting.
 1/23/2024
 2:00 PM : Recreated the users table and created a nutrition table for users to log what they have eaten and the nutrition table has a foreign key named "user_id" which references 
 the "id" column in the users table. I also created a nutrition.py file/class to create a log function and I added a function to access the nutrition table in db_access.py. 
+
+1/24/2024
+10:04 AM: I fixed my code by getting the login_or_add function to take in a firstName variable which starts off as an empty string, takes the user input, checks the db for the user 
+and if the user exists they login, if they dont it gives them the option to be added to the db. If the user says no, it will loop back to the login. If the user logs in sucessfully or 
+adds their name to the db it will return the firstName variable. The login_or_ add function is then used as the parameter for the firstOption function when the firstOption function is 
+called. I started all of this yesterday so that way I could clean up my code a bit more.
